@@ -4,9 +4,9 @@ public class Anotacion {
 
     private Integer numeroPartido;
     private Integer numeroCamiseta;
-    private Tipo lado;
+    private Lado lado;
 
-    public Anotacion(Integer numeroPartido, Integer numeroCamiseta, Tipo lado) {
+    public Anotacion(Integer numeroPartido, Integer numeroCamiseta, Lado lado) {
         this.numeroPartido = numeroPartido;
         this.numeroCamiseta = numeroCamiseta;
         this.lado = lado;
@@ -28,12 +28,11 @@ public class Anotacion {
         this.numeroCamiseta = numeroCamiseta;
     }
 
-    public Tipo getLado() {
+    public Lado getLado() {
         return lado;
     }
 
-    public void setLado(Tipo lado) {
+    public void setLado(Lado lado) {
         this.lado = lado;
     }
-
 }

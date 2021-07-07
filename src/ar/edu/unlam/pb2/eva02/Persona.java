@@ -5,12 +5,14 @@ public abstract class Persona {
     private String nombre;
     private String apellido;
     private Equipo equipo;
+    private Tipo tipo;
 
-    public Persona(Integer dni, String nombre, String apellido,Equipo equipo) {
+    public Persona(Integer dni, String nombre, String apellido, Equipo equipo, Tipo tipo) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.equipo = equipo;
+        this.tipo = tipo;
     }
 
     public Integer getDni() {
@@ -43,5 +45,13 @@ public abstract class Persona {
 
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
     }
 }

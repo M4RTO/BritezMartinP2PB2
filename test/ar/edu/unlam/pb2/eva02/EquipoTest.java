@@ -7,7 +7,7 @@ public class EquipoTest {
 
     @Test
     public void crearEquipo(){
-        Equipo partido = new Equipo("Argentina");
-        Assert.assertNotNull(partido);
+        Equipo equipo = new Equipo("Argentina",Lado.VISITANTE);
+        Assert.assertNotNull(equipo);
     }
 }

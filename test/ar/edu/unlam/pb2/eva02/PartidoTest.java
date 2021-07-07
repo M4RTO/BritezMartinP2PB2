@@ -7,10 +7,10 @@ public class PartidoTest {
 
     @Test
     public void crearPartido(){
-        Equipo equipoVisitante = new Equipo("Argentina");
-        Equipo equipoLocal = new Equipo("Brasil");
-
-        Partido partido = new Partido("Partido-1",equipoVisitante,equipoLocal);
+        Partido partido = new Partido();
+        String nombreEquipoLocal = "Argentina";
+        String nombreEquipoVisitante = "Brasil";
+        partido.crearPartido(nombreEquipoLocal,nombreEquipoVisitante);
 
         Assert.assertNotNull(partido);
     }

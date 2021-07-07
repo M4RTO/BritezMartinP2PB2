@@ -1,21 +1,28 @@
 package ar.edu.unlam.pb2.eva02;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Torneo {
 
     private String nombre;
     private HashSet<Partido> partidos;
-    private List<Jugador> jugadores;
+    private List<Persona> participantes;
     private Map<Integer,Anotacion> anotaciones;
 
-    public Torneo(String nombre, HashSet<Partido> partidos, List<Jugador> jugadores, Map<Integer, Anotacion> anotaciones) {
+    public Torneo(String nombre, HashSet<Partido> partidos, List<Persona> participantes, Map<Integer, Anotacion> anotaciones) {
         this.nombre = nombre;
         this.partidos = partidos;
-        this.jugadores = jugadores;
+        this.participantes = participantes;
         this.anotaciones = anotaciones;
+    }
+
+    public Torneo(String nombre) {
+        this.nombre = nombre;
+        this.partidos = new HashSet<>();
+        this.participantes = new ArrayList<>();
+        this.anotaciones = new HashMap<>();
     }
 
     public String getNombre() {
@@ -34,12 +41,12 @@ public class Torneo {
         this.partidos = partidos;
     }
 
-    public List<Jugador> getJugadores() {
-        return jugadores;
+    public List<Persona> getParticipantes() {
+        return participantes;
     }
 
-    public void setJugadores(List<Jugador> jugadores) {
-        this.jugadores = jugadores;
+    public void setParticipantes(List<Persona> participantes) {
+        this.participantes = participantes;
     }
 
     public Map<Integer, Anotacion> getAnotaciones() {
@@ -48,5 +55,29 @@ public class Torneo {
 
     public void setAnotaciones(Map<Integer, Anotacion> anotaciones) {
         this.anotaciones = anotaciones;
+    }
+
+    public void registrarParticipante(Persona participante) {
+        this.participantes.add(participante);
+    }
+
+    public void registrarPartido(Partido partido) {
+        this.partidos.add(partido);
+    }
+
+    public void registrarNominaParaElPartido(Partido partido) {
+
+        List<Persona> participantesEquipoLocal = this.participantes
+                .stream()
+                .filter(participante -> participante.getEquipo().equals(partido.getEquipoLocal()) && participante.getTipo().equals(Tipo.JUGADOR))
+                .collect(Collectors.toList());
+
+        List<Persona> participantesEquipoVisitante = this.participantes
+                .stream()
+                .filter(participante -> participante.getEquipo().equals(partido.getEquipoVisitante()) && participante.getTipo().equals(Tipo.JUGADOR))
+                .collect(Collectors.toList());
+
+        partido.getEquipoLocal().setJugadores(participantesEquipoLocal);
+        partido.getEquipoVisitante().setJugadores(participantesEquipoVisitante);
     }
 }
