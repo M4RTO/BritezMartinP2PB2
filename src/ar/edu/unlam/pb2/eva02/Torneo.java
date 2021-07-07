@@ -80,4 +80,10 @@ public class Torneo {
         partido.getEquipoLocal().setJugadores(participantesEquipoLocal);
         partido.getEquipoVisitante().setJugadores(participantesEquipoVisitante);
     }
+
+    public void registrarGol(Integer idPartido, Integer numeroCamiseta, Lado lado, int minuto) {
+        Anotacion anotacion = new Anotacion(idPartido,numeroCamiseta,lado);
+        this.anotaciones.put(minuto,anotacion);
+    }
+
 }
